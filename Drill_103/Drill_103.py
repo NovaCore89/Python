@@ -17,6 +17,12 @@ for files in fileList:
     if files.endswith(".txt"):
         print(files)
         cur.execute("INSERT INTO tbl_files(col_FileNames) VALUES (?)", (files,))
+    
+with conn:
+    cur = conn.cursor()
+    cur.execute("SELECT col_FileNames FROM tbl_files")
+    if files.endswith(".txt"):
+        print(files)
     conn.commit()
 conn.close()
 
