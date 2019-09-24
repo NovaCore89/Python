@@ -21,8 +21,8 @@ for files in fileList:
 with conn:
     cur = conn.cursor()
     cur.execute("SELECT col_FileNames FROM tbl_files")
-    if files.endswith(".txt"):
-        print(files)
+    printFiles = cur.fetchall()
+    print(printFiles)
     conn.commit()
 conn.close()
 
