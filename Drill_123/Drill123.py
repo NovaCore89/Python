@@ -83,11 +83,15 @@ def dbUpdate(file, absPath, local_time):
             col_filePath TEXT, \
             col_time     TEXT  \
             )")
-    conn.commit()
-    cur.execute("INSERT INTO tbl_files(col_fileName, col_filePath, col_time) values (?,?,?)", (file, absPath, local_time))
+        conn.commit()
+    conn.close()
+    conn = sqlite3.connect('drill_123.db')
+    with conn:
+        cur = conn.cursor()
+        cur.execute("INSERT INTO tbl_files(col_fileName, col_filePath, col_time) values (?,?,?)", (file, absPath, local_time))
+        conn.commit()
     conn.close()
 
-            
 
 if __name__ == "__main__":
     root = tk.Tk()
